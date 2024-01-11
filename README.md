@@ -43,7 +43,7 @@ Objetivos detalhados:
 
 Uma descrição detalhada do dataset utilizado está disponível [aqui](data/README.md).
 
-### Etapa1: Análise exploratória
+### Etapa 1: Análise exploratória
 
 Com objetivo de resumir suas características para que possamos chegar a insights que irão nos orientar em anásises mais profundas. É de grande importância realizar esse procedimento pois através dele podemos formular hipóteses.
 
@@ -63,16 +63,82 @@ Com objetivo de resumir suas características para que possamos chegar a insight
 ![corr](images/output.png)
 
 ##
-### Etapa2: Clusterização
+### Etapa 2: Clusterização
 
 Clustering é a categorização e agrupamento de dados de um conjunto. É feito através de características em comum entre dados.
 O pré-processamento é fundamental na análise dos dados. pois ele envolve a limpeza de dados facilitando serem utilizados no aprendizado de máquinas.
 Para essa etapa usaremos o arquivo gerado na última etapa(customers_new_features_and_drop).
 
 - Após chamar o dataset gerado faremos um pré-processamento utilizando as funções: **OneHotEnconder** para converter as colunas categóricas em uma representação numérica, **StandardScaler** para padronizar as features removendo a média e escalonando para ter variância unitária, **MinMaxScaler** para realiza uma transformação linear em nossos dados, escalonando cada feature para um intervalo específico, geralmente [0, 1] e **PowerTransformer** está funcão irá aplicar transformações de potência para estabilizar a variância e tornar a distribuição dos dados mais próxima da normal.
-- Com os resultados obtidos criamos um DataFrame, para aplicarmos dois métodos **Elbow Method** e uma técnica usada em análise de clusterização para que possamos determinar o número ideal de clusters a ser utilizado. E o **Silhouette Method** ulilizado para avaliar a validade dos clusters, ele mede quão semelhantes são os objetos no mesmo cluster e a diferença dos clusters vizinhos. 
+- Com os resultados obtidos criamos um DataFrame, para aplicarmos dois métodos **Elbow Method** e uma técnica usada em análise de clusterização para que possamos determinar o número ideal de clusters a ser utilizado. E o **Silhouette Method** ulilizado para avaliar a validade dos clusters, ele mede quão semelhantes são os objetos no mesmo cluster e a diferença dos clusters vizinhos.
 
+  ![ESMethod](images/ES.png)
 
+Com um pipeline com pré-processamento, PCA e K-Means, a base foi segmentada em 3 clusters:
+![clusters](images/pca_clusters.png)
+
+Analise por Cluster:
+- Cluster 0: 
+  - Renda alta 
+  - gasto alto 
+  - muito provalmente não tem filhos
+  - mais propenso a aceitar campanhas
+  - cluster sem pessoas com escolaridade básica
+  - sem um perfil de idade que se destaque
+  
+
+- Cluster 1: 
+  - Renda baixa 
+  - gasto baixo 
+  - provalmente tem filhos
+  - baixa propensão a aceitar campanhas
+  - único cluster com porcentagem significativa de pessoas com escolaridade básica
+  - pessoas mais jovens
+  
+
+- Cluster 2: 
+  - Renda intermediária
+  - gasto intermediário
+  - provalmente tem filhos
+  - pode aceitar campanhas
+  - pessoas com idade mais elevada
+##
+
+### Etapa 3: Escolha de um modelo preditivo para classificação
+
+Três modelos de classificação foram treinados para prever se um cliente irá comprar o produto ofericido na campanha.
+- **DecisionTreeClassifier**:
+    - Definição: Um modelo que utiliza uma estrutura parecida com de uma árvore para tomar decisões, em cada nó do modelo existe uma pergunta que direciona para outro nó até chegar a uma decisão.
+    - Aplicação: Pode ser usado para regressão e classificação, mas temos que ter certa atenção pois pode ser propenso a overffiting.
+- **LogisticRegression**:
+    - Definição: Modelo estatístico que utiliza funçao logística para modelar a probabilidade de uma variável. é um algoritimo de classificação binária.
+    - Aplicação: Utlilzado principalmente para problemas de classificação binária exemplo: se uma pessoa tem divida no banco sim ou não. Poder ser estendido a problemas de classificação multiclasse.
+- **KNeighborsClassifier**:
+    - Definição: Algoritmo de aprendizado supervisionado que classifica um ponto de dados com base nas classes de seus k vizinhos mais próximos.
+    - Aplicação: Útil em problema de classifação e regressão é sensível á escala de variáveis.
+- **DummyClassifier**: Geralmete usado para avaliar desempenho de modelos. Seu papel é oferecer uma referência simples para comparação dos modelos.
+
+Plotamos os resultados obtidos para melhor entendimento:
+
+![clusters](images/comparing_models.png)
+
+Com base nessa comparação, o modelo **LogisticRegression** foi escolhido para passar por uma otimização de hiperparâmetros.
+##
+
+ ### Como reproduzir o projeto
+
+O projeto foi desenvolvido utilizando o Python 3.11.5. Para reproduzir o projeto, crie um ambiente virtual com o Conda, ou ferramenta similar, com o Python 3.11.5 e instale as bibliotecas abaixo:
+
+| Biblioteca       | Versão |
+| ---------------- | ------ |
+| Imbalanced-Learn | 0.11.0 |
+| Matplotlib       | 3.7.1  |
+| NumPy            | 1.21.5 |
+| Pandas           | 1.4.4  |
+| Scikit-Learn     | 1.3.2  |
+| Seaborn          | 0.12.2 |
+
+Essas são as bibliotecas principais utilizadas no projeto.
 
 
 
