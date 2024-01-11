@@ -48,14 +48,14 @@ Uma descrição detalhada do dataset utilizado está disponível [aqui](data/REA
 Com objetivo de resumir suas características para que possamos chegar a insights que irão nos orientar em anásises mais profundas. É de grande importância realizar esse procedimento pois através dele podemos formular hipóteses.
 
 - Ao avaliar a base foi notado que temos a necessidade de criar algumas colunas como por exemplo: existe duas colunas uma com quantidade de crianças e outra com quantidade de adolescentes foi transformado para uma coluna HasChildren (tem filhos), outra coluna com intervalo de idades também foi criada entre outras.
-- Identificamos outliers nas colunas Age, Income e MntTotal que aparentemente parece erro de digitação de usuário então dropamos essas linhas pois eram poucas.
+- Identificamos outliers nas colunas **Age, Income e MntTotal** que aparentemente parece erro de digitação de usuário então dropamos essas linhas pois eram poucas.
 - A escolha de colunas que adotamos como importantes para nossa análise é subjetivo sendo assim foi escolhido as colunas abaixo:
-  - Income(Renda): Essa coluna escolhida pois legal ver o comportamento de quem tem uma renda maior ou menos;
-  - Recency(Tempo para retorno): Para saber se o cliente tem compras recentes ou não;
-  - DaysSinceEnrolled(Dias cadastrado): Avaliar o comportamento dos clientes mais recentes versus os mais antigos;
-  - Age(idade): Assim como na coluna anterior ver o comportamento de consumo dos grupos de idade;
-  - MntTotal(Valor gasto total em produtos): Essa coluna por exemplo acho interessante correlacionar ela com a Income;
-  - HasChildren(tem filhos): E essa coluna foi escolhida para ser usada como um parametro hue no pairplot.
+  - **Income(Renda)**: Essa coluna escolhida pois legal ver o comportamento de quem tem uma renda maior ou menos;
+  - **Recency(Tempo para retorno)**: Para saber se o cliente tem compras recentes ou não;
+  - **DaysSinceEnrolled(Dias cadastrado)**: Avaliar o comportamento dos clientes mais recentes versus os mais antigos;
+  - **Age(idade)**: Assim como na coluna anterior ver o comportamento de consumo dos grupos de idade;
+  - **MntTotal(Valor gasto total em produtos)**: Essa coluna por exemplo acho interessante correlacionar ela com a Income;
+  - **HasChildren(tem filhos)**: E essa coluna foi escolhida para ser usada como um parametro hue no pairplot.
 - Após análise dessas colunas utilizando boxplots foi percebido que poderiamos estar usando o Dummies e fazer uma correlação com nosso target.
 - Foi gerado um no dataset "customers_new_features_and_drop"
 - Segue abaixo visualização da nossa correlação:
